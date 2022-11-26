@@ -135,10 +135,12 @@ const App: React.FC = () => {
                                 icon: <PeopleOutlineOutlined />,
                             },
                             {
-                                name: "products",
+                                name: "meals",
                                 list: ProductList,
                                 icon: <LocalPizzaOutlined />,
                             },
+                            // TODO: For future
+                            /*
                             {
                                 name: "stores",
                                 list: StoreList,
@@ -164,6 +166,7 @@ const App: React.FC = () => {
                                 list: ReviewsList,
                                 icon: <StarBorderOutlined />,
                             },
+                            */
                         ]}
                     />
                 </RefineSnackbarProvider>

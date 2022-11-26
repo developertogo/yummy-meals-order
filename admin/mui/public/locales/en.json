@@ -231,7 +231,7 @@
             "status": "Status",
             "store": "Store",
             "user": "User",
-            "products": "Products",
+            "products": "Meals",
             "createdAt": "CreatedAt",
             "amount": "Amount",
             "itemsAmount": "{{amount}} items"
@@ -275,12 +275,12 @@
         }
     },
     "products": {
-        "products": "Products",
-        "noProducts": "No Products",
+        "products": "Meals",
+        "noProducts": "No Meals",
         "titles": {
-            "list": "Products",
-            "create": "Create Product",
-            "edit": "Edit Product"
+            "list": "Meals",
+            "create": "Create Meal",
+            "edit": "Edit Meal"
         },
         "fields": {
             "id": "ID",
@@ -327,13 +327,13 @@
             "gsm": "Phone"
         },
         "buttons": {
-            "editProducts": "Edit Products",
+            "editProducts": "Edit Meals",
             "addProduct": "Add Product",
             "outOfStock": "Out Of Stock",
             "edit": "Edit Product"
         },
         "selectLocation": "Choose store location on the map",
-        "storeProducts": "Store Products",
+        "storeProducts": "Store Meals",
         "tagFilterDescription": "Use tags to filter your search",
         "all": "All",
         "productSearch": "Product Search"
