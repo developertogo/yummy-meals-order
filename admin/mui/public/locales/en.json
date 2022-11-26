@@ -232,7 +232,7 @@
             "store": "Store",
             "user": "User",
             "products": "Meals",
-            "createdAt": "CreatedAt",
+            "createdAt": "Delivered At",
             "amount": "Amount",
             "itemsAmount": "{{amount}} items"
         },

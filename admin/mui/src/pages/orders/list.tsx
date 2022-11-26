@@ -97,7 +97,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 headerAlign: "center",
                 align: "center",
                 renderCell: function render({ row }) {
-                    return <OrderStatus status={row.status.text} />;
+                    return <OrderStatus status={'Delivered'} />;
+                    // TODO: for future
+                    //return <OrderStatus status={row.status.text} />;
                 },
                 flex: 1,
                 minWidth: 100,
