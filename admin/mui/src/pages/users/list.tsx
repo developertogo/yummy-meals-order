@@ -31,13 +31,13 @@ import {
 import { Controller, useForm } from "@pankod/refine-react-hook-form";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 
-import { IUser, IUserFilterVariables } from "interfaces";
+import { IYUser, IUserFilterVariables } from "interfaces";
 
 export const UserList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
     const { dataGridProps, search, filters } = useDataGrid<
-        IUser,
+        IYUser,
         HttpError,
         IUserFilterVariables
     >({
@@ -68,14 +68,16 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
-    const columns = React.useMemo<GridColumns<IUser>>(
+    const columns = React.useMemo<GridColumns<IYUser>>(
         () => [
             {
                 field: "gsm",
                 headerName: t("users.fields.gsm"),
+                valueGetter: ({ row }) => row.id,
                 minWidth: 150,
                 flex: 1,
             },
+            /* TODO: For future use
             {
                 field: "avatar",
                 headerName: t("users.fields.avatar.label"),
@@ -98,11 +100,35 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 150,
                 flex: 1,
             },
+            */
+            {
+                field: "Name",
+                valueGetter: ({ row }) => row.name,
+                headerName: t("users.fields.firstName"),
+                minWidth: 150,
+                flex: 1,
+            },
             {
                 field: "gender",
                 headerName: t("users.fields.gender.label"),
                 valueGetter: ({ row }) =>
-                    t(`users.fields.gender.${row.gender}`),
+                    t(`users.fields.gender.${Math.floor(Math.random() * 2) == 0 ? 'Female' : 'Male'}`),
+                    // TODO: For future use
+                    //t(`users.fields.gender.${row.gender}`),
+            },
+            {
+                field: "Email",
+                valueGetter: ({ row }) => row.email,
+                headerName: "Email",
+                minWidth: 150,
+                flex: 1,
+            },
+            {
+                field: "Phone",
+                valueGetter: ({ row }) => row.phone,
+                headerName: "Phone",
+                minWidth: 150,
+                flex: 1,
             },
             {
                 field: "isActive",
@@ -115,13 +141,16 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                             svgIconProps={{
                                 sx: { width: "16px", height: "16px" },
                             }}
-                            value={row.isActive}
+                            value={true}
+                            // TODO: For future use
+                            //value={row.isActive}
                         />
                     );
                 },
                 minWidth: 80,
                 flex: 0.5,
             },
+            /* TODO: For future use
             {
                 field: "createdAt",
                 headerName: t("users.fields.createdAt"),
@@ -131,6 +160,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 200,
                 flex: 1,
             },
+            */
             {
                 field: "actions",
                 headerName: t("table.actions"),
@@ -153,7 +183,7 @@ export const UserList: React.FC<IResourceComponentsProps> = () => {
     );
 
     const { register, handleSubmit, control } = useForm<
-        IUser,
+        IYUser,
         HttpError,
         IUserFilterVariables
     >({

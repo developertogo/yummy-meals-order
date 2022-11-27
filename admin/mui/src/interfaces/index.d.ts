@@ -37,6 +37,14 @@ export interface IUser {
     addresses: IAddress[];
 }
 
+// Yumi User
+export interface IYUser {
+    id: number;
+    name: string;
+    email: string;
+    phone: string;
+}
+
 export interface IAddress {
     text: string;
     coordinate: [string, string];

@@ -351,14 +351,14 @@
                 "label": "Avatar",
                 "description": "Click or drag avatar image to this area to upload."
             },
-            "firstName": "First Name",
+            "firstName": "Name",
             "lastName": "Last Name",
             "gender": {
                 "label": "Gender",
                 "Male": "Male",
                 "Female": "Female"
             },
-            "gsm": "Gsm Number",
+            "gsm": "ID",
             "createdAt": "CreatedAt",
             "isActive": {
                 "label": "Active",

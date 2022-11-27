@@ -129,7 +129,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 currency: "USD",
                                 style: "currency",
                             }}
-                            value={299 / 100}
+                            value={Math.floor(Math.random() * 1000) / 100}
                             // TODO: For future use
                             // value={row.amount / 100}
                             sx={{ fontSize: "14px" }}
@@ -142,7 +142,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "store",
                 headerName: t("orders.fields.store"),
-                valueGetter: ({ row }) => "Target - Costa Mesa",
+                valueGetter: ({ row }) => `Target - #${Math.floor(Math.random() * 10)+1}`,
                 // TODO: For future use
                 //valueGetter: ({ row }) => row.store.title,
                 flex: 1,
@@ -451,6 +451,16 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                             field.onChange(value?.id ?? value);
                                         }}
                                         getOptionLabel={(item) => {
+                                            return item.name
+                                                ? item.name
+                                                : userAutocompleteProps?.options?.find(
+                                                      (p) =>
+                                                          p.id.toString() ===
+                                                          item.toString(),
+                                                  )?.name ?? "";
+                                        }}
+                                        /* TODO: For future use
+                                        getOptionLabel={(item) => {
                                             return item.fullName
                                                 ? item.fullName
                                                 : userAutocompleteProps?.options?.find(
@@ -459,6 +469,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                                           item.toString(),
                                                   )?.fullName ?? "";
                                         }}
+                                        */
                                         isOptionEqualToValue={(
                                             option,
                                             value,
