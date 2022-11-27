@@ -15,6 +15,8 @@ import {
     CardHeader,
     DataGrid,
     GridColumns,
+    GridRowsProp,
+    GridValidRowModel,
     IconButton,
     Stack,
     Step,
@@ -36,19 +38,33 @@ import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import { CourierInfoBox, Map, MapMarker } from "components";
 
-import { IEvent, IOrder, IProduct } from "interfaces";
+import { IEvent, IYOrder, IYMeal } from "interfaces";
 import { useOrderCustomKbarActions } from "hooks";
+
+import { useLocation } from 'react-router-dom';
 
 export const OrderShow: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
 
-    const { queryResult } = useShow<IOrder>();
-    const record = queryResult.data?.data;
-    const canAcceptOrder = record?.status.text === "Pending";
-    const canRejectOrder =
+    const location = useLocation();
+    const orderId = location.pathname.split('/').slice(-1).pop() ?? "";
+    const record = location.state as GridRowsProp;
+    //const record = location.state as IYMeal;
+
+    // TODO: For future use
+    //const { queryResult } = useShow<IYOrder>();
+    //const record = queryResult.data?.d ?? ""ata;
+
+    const canAcceptOrder = false;
+    // TODO: For future use
+    // const canAcceptOrder = record?.status.text === "Pending";
+
+    const canRejectOrder = false;
+    /* TODO: For future use
         record?.status.text === "Pending" ||
         record?.status.text === "Ready" ||
         record?.status.text === "On The Way";
+    */
 
     const { goBack } = useNavigation();
     const { mutate } = useUpdate();
@@ -57,7 +73,8 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
 
     const isSmallOrLess = useMediaQuery(theme.breakpoints.down("sm"));
 
-    const columns = React.useMemo<GridColumns<IProduct>>(
+    const columns = React.useMemo<GridColumns<GridValidRowModel>>(
+    //const columns = React.useMemo<GridColumns<IProduct>>(
         () => [
             {
                 field: "name",
@@ -68,14 +85,14 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         <Stack direction="row" spacing={4} alignItems="center">
                             <Avatar
                                 sx={{ width: 108, height: 108 }}
-                                src={row.images[0].url}
+                                src={row.image_url}
                             />
                             <Box>
                                 <Typography
                                     variant="body1"
                                     whiteSpace="break-spaces"
                                 >
-                                    {row.name}
+                                    {row.name} - {row.description}
                                 </Typography>
                                 <Typography variant="caption">
                                     #{row.id}
@@ -90,8 +107,11 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("orders.deliverables.fields.quantity"),
                 width: 150,
                 sortable: false,
+                // TODO: Display meal quantity
                 valueGetter: () => "1x",
             },
+            // TODO: For future use
+            /*
             {
                 field: "price",
                 headerName: t("orders.deliverables.fields.price"),
@@ -104,6 +124,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 width: 100,
                 type: "number",
             },
+            */
         ],
         [t],
     );
@@ -113,15 +134,19 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
             <Typography sx={{ color: "primary.main" }} fontWeight={700}>
                 {t("orders.deliverables.mainTotal")}
             </Typography>
-            <Typography>{record?.amount}$</Typography>
         </Stack>
+            // TODO: For future use
+            // <Typography>{record?.amount}$</Typography>
     );
 
     const handleMutate = (status: { id: number; text: string }) => {
         if (record) {
             mutate({
                 resource: "orders",
-                id: record.id.toString(),
+                //id: "1",
+                id: orderId,
+                // TODO: For future use
+                //id: record.id.toString(),
                 values: {
                     status,
                 },
@@ -129,7 +154,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
         }
     };
 
-    useOrderCustomKbarActions(record);
+    //useOrderCustomKbarActions(record);
 
     return (
         <Stack spacing={2}>
@@ -147,7 +172,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                                 {t("orders.fields.orderID")}
                             </Typography>
                             <Typography variant="caption">{`#${
-                                record?.orderNumber ?? ""
+                                orderId
                             }`}</Typography>
                         </Stack>
                     }
@@ -192,6 +217,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         </Stack>
                     }
                 />
+                {/* TODO: For future use
                 <CardContent>
                     <Stepper
                         nonLinear
@@ -219,8 +245,10 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                         ))}
                     </Stepper>
                 </CardContent>
+                */}
             </Card>
 
+            {/* TODO: For future use
             <Box sx={{ height: 500 }}>
                 <Map
                     center={{
@@ -251,7 +279,9 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     />
                 </Map>
             </Box>
+            */}
 
+            {/* TODO: For future use
             <Paper sx={{ padding: 2 }}>
                 <Stack
                     direction="row"
@@ -299,6 +329,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                     </Stack>
                 </Stack>
             </Paper>
+            */}
 
             <List
                 cardHeaderProps={{
@@ -308,12 +339,15 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 <DataGrid
                     autoHeight
                     columns={columns}
-                    rows={record?.products || []}
+                    rows={record || []}
                     hideFooterPagination
                     rowHeight={124}
+                    // TODO: For future use
+                    /*
                     components={{
                         Footer: CustomFooter,
                     }}
+                    */
                 />
             </List>
         </Stack>

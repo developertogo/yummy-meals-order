@@ -14,7 +14,7 @@ export const OffLayoutArea: React.FC = () => {
                         fontSize: "3rem",
                     }}
                 />
-                <a href="https://example.refine.dev">
+                <a href="http://localhost:5000">
                     Switch to <br />
                     <strong>CLIENT APP</strong>
                 </a>

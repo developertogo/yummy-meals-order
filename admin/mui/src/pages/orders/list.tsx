@@ -36,14 +36,18 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import { OrderStatus, CustomTooltip } from "components";
-import { IOrder, IOrderFilterVariables } from "interfaces";
+import { IYOrder, IOrderFilterVariables } from "interfaces";
+//import { IOrder, IOrderFilterVariables } from "interfaces";
+
+import { useLocation } from 'react-router-dom';
 
 export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const t = useTranslate();
     const { mutate } = useUpdate();
 
     const { dataGridProps, search, filters, sorter } = useDataGrid<
-        IOrder,
+        IYOrder,
+        //IOrder,
         HttpError,
         IOrderFilterVariables
     >({
@@ -58,34 +62,43 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 value: q !== "" ? q : undefined,
             });
 
+            /* For future use
             filters.push({
                 field: "store.id",
                 operator: "eq",
                 value: (store ?? [].length) > 0 ? store : undefined,
             });
+            */
 
             filters.push({
-                field: "user.id",
+                field: "user_id",
                 operator: "eq",
                 value: user,
             });
 
+            /* TODO: For future use
             filters.push({
                 field: "status.text",
                 operator: "in",
                 value: (status ?? []).length > 0 ? status : undefined,
             });
+            */
 
             return filters;
         },
     });
 
-    const columns = React.useMemo<GridColumns<IOrder>>(
+    const columns = React.useMemo<GridColumns<IYOrder>>(
+    //const columns = React.useMemo<GridColumns<IOrder>>(
         () => [
             {
                 field: "orderNumber",
                 headerName: t("orders.fields.orderNumber"),
                 description: t("orders.fields.orderNumber"),
+                valueGetter: ({ row }) => row.id,
+                // TODO: For future use
+                //headerName: t("orders.fields.orderNumber"),
+                //description: t("orders.fields.orderNumber"),
                 headerAlign: "center",
                 align: "center",
                 flex: 1,
@@ -98,7 +111,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 align: "center",
                 renderCell: function render({ row }) {
                     return <OrderStatus status={'Delivered'} />;
-                    // TODO: for future
+                    // TODO: For future use
                     //return <OrderStatus status={row.status.text} />;
                 },
                 flex: 1,
@@ -116,7 +129,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 currency: "USD",
                                 style: "currency",
                             }}
-                            value={row.amount / 100}
+                            value={299 / 100}
+                            // TODO: For future use
+                            // value={row.amount / 100}
                             sx={{ fontSize: "14px" }}
                         />
                     );
@@ -127,11 +142,15 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             {
                 field: "store",
                 headerName: t("orders.fields.store"),
-                valueGetter: ({ row }) => row.store.title,
+                valueGetter: ({ row }) => "Target - Costa Mesa",
+                // TODO: For future use
+                //valueGetter: ({ row }) => row.store.title,
                 flex: 1,
                 minWidth: 150,
                 sortable: false,
             },
+            // TODO: For future use
+            /*
             {
                 field: "user",
                 headerName: t("orders.fields.user"),
@@ -140,6 +159,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 150,
                 sortable: false,
             },
+            */
             {
                 field: "products",
                 headerName: t("orders.fields.products"),
@@ -153,15 +173,20 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             placement="top"
                             title={
                                 <Stack sx={{ padding: "2px" }}>
-                                    {row.products.map((product) => (
-                                        <li key={product.id}>{product.name}</li>
+                                    {row.meals.map((meal) => (
+                                        <li key={meal.id}>{meal.name}</li>
+                                     // TODO: For future use
+                                     //row.products.map((product) => (
+                                     //   <li key={product.id}>{product.name}</li>
                                     ))}
                                 </Stack>
                             }
                         >
                             <Typography sx={{ fontSize: "14px" }}>
                                 {t("orders.fields.itemsAmount", {
-                                    amount: row.products.length,
+                                    amount: row.meals.length,
+                                    // TODO: For future use
+                                    //amount: row.products.length,
                                 })}
                             </Typography>
                         </CustomTooltip>
@@ -178,7 +203,9 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 renderCell: function render({ row }) {
                     return (
                         <DateField
-                            value={row.createdAt}
+                            value={row.delivery_date}
+                            // TODO: For future use
+                            //value={row.createdAt}
                             format="LLL"
                             sx={{ fontSize: "14px" }}
                         />
@@ -193,7 +220,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 minWidth: 100,
                 sortable: false,
                 getActions: ({ id }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
+                    // Carlos - added space after @ to get rid of warning: `Unused '@ ts-expect-error' directive.`
+                    // @ ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         icon={<CheckOutlinedIcon color="success" />}
@@ -213,7 +241,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                             });
                         }}
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
+                    // Carlos - added space after @ to get rid of warning: `Unused '@ ts-expect-error' directive.`
+                    // @ ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={2}
                         icon={<CloseOutlinedIcon color="error" />}
@@ -239,21 +268,28 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         [t],
     );
 
-    const { show } = useNavigation();
+    const { show, push } = useNavigation();
 
-    const { isLoading, triggerExport } = useExport<IOrder>({
+    let location = useLocation();
+
+    const { isLoading, triggerExport } = useExport<IYOrder>({
+    //const { isLoading, triggerExport } = useExport<IOrder>({
         sorter,
         filters,
         pageSize: 50,
         maxItemCount: 50,
         mapData: (item) => {
             return {
-                id: item.id,
-                amount: item.amount,
-                orderNumber: item.orderNumber,
-                status: item.status.text,
-                store: item.store.title,
-                user: item.user.firstName,
+                order_number: item.id,
+                delivery_date: item.delivery_date,
+                // TODO: For future use
+                //createdAt: item.delivery_date,
+                //id: item.id,
+                //amount: item.amount,
+                //orderNumber: item.orderNumber,
+                //status: item.status.text,
+                //store: item.store.title,
+                //user: item.user.firstName,
             };
         },
     });
@@ -271,6 +307,8 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         },
     });
 
+    // TODO: For future use
+    /*
     const { autocompleteProps: storeAutocompleteProps } = useAutocomplete({
         resource: "stores",
         defaultValue: getDefaultFilter("store.id", filters, "eq"),
@@ -279,6 +317,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
     const { autocompleteProps: orderAutocompleteProps } = useAutocomplete({
         resource: "orderStatuses",
     });
+    */
 
     const { autocompleteProps: userAutocompleteProps } = useAutocomplete({
         resource: "users",
@@ -308,6 +347,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                 autoFocus
                                 size="small"
                             />
+                            {/* TODO: For future use
                             <Controller
                                 control={control}
                                 name="status"
@@ -399,6 +439,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                                     />
                                 )}
                             />
+                            */}
                             <Controller
                                 control={control}
                                 name="user"
@@ -471,8 +512,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                         columns={columns}
                         filterModel={undefined}
                         autoHeight
-                        onRowClick={({ id }) => {
-                            show("orders", id);
+                        onRowClick={({ id, row}) => {
+                            location.state = row.meals;
+                            push(`show/${id}`,
+                                location
+                            );
+                            //show("orders", id);
                         }}
                         rowsPerPageOptions={[10, 20, 50, 100]}
                         sx={{

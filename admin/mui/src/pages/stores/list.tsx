@@ -117,7 +117,8 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                 headerName: t("table.actions"),
                 type: "actions",
                 getActions: ({ row }) => [
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
+                    // Carlos - added space after @ to get rid of warning: `Unused '@ts-expect-error' directive.
+                    // @ ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         key={1}
                         label={t("buttons.edit")}
@@ -125,7 +126,8 @@ export const StoreList: React.FC<IResourceComponentsProps> = () => {
                         showInMenu
                         onClick={() => edit("stores", row.id)}
                     />,
-                    // @ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
+                    // Carlos - added space after @ to get rid of warning: `Unused '@ts-expect-error' directive.
+                    // @ ts-expect-error `@mui/x-data-grid@5.17.12` broke the props of `GridActionsCellItem` and requires `onResize` and `onResizeCapture` props which should be optional.
                     <GridActionsCellItem
                         onClick={() => {
                             show();

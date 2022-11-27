@@ -96,6 +96,23 @@ export interface IOrder {
     amount: number;
 }
 
+// Yumi Order
+export interface IYOrder {
+    id: number;
+    delivery_date: string;
+    //meal_count: number;
+    meals: IYMeal[];
+}
+
+// Yumi Meal
+export interface IYMeal {
+    id: number;
+    //quantity: number;
+    name: string;
+    description: string;
+    image_url: string;
+}
+
 export interface IProduct {
     id: number;
     name: string;

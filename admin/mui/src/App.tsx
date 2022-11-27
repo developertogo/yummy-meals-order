@@ -94,11 +94,13 @@ const App: React.FC = () => {
                             ],
                         }}
                         dataProvider={dataProvider(
-                            "https://api.finefoods.refine.dev",
+                            "http://localhost:4000/api/v1",
+                            //"https://api.finefoods.refine.dev",
                         )}
                         authProvider={authProvider}
                         i18nProvider={i18nProvider}
-                        DashboardPage={DashboardPage}
+                        // TODO: for future use
+                        //DashboardPage={DashboardPage}
                         Title={Title}
                         ReadyPage={ReadyPage}
                         Layout={Layout}
@@ -120,7 +122,8 @@ const App: React.FC = () => {
                             warnWhenUnsavedChanges: true,
                         }}
                         notificationProvider={notificationProvider}
-                        OffLayoutArea={OffLayoutArea}
+                        // TODO: for future use
+                        //OffLayoutArea={OffLayoutArea}
                         resources={[
                             {
                                 name: "orders",
@@ -134,13 +137,13 @@ const App: React.FC = () => {
                                 show: UserShow,
                                 icon: <PeopleOutlineOutlined />,
                             },
+                            // TODO: For future use
+                            /*
                             {
                                 name: "meals",
                                 list: ProductList,
                                 icon: <LocalPizzaOutlined />,
                             },
-                            // TODO: For future
-                            /*
                             {
                                 name: "stores",
                                 list: StoreList,

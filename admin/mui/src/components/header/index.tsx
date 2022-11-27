@@ -128,8 +128,10 @@ export const Header: React.FC = () => {
     useEffect(() => {
         setOptions([]);
         refetchOrders();
+        /* TODO: For future use
         refetchCouriers();
         refetchStores();
+        */
     }, [value]);
 
     return (
