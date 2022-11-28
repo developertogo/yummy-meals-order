@@ -104,6 +104,11 @@ export interface IOrder {
     amount: number;
 }
 
+// Yumi Orders
+export interface IYOrders {
+    orders: IYOrder[];
+}
+
 // Yumi Order
 export interface IYOrder {
     id: number;

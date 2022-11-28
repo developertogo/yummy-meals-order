@@ -36,7 +36,7 @@ import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 import { OrderStatus, CustomTooltip } from "components";
-import { IYOrder, IOrderFilterVariables } from "interfaces";
+import { IYOrders, IYOrder, IOrderFilterVariables } from "interfaces";
 //import { IOrder, IOrderFilterVariables } from "interfaces";
 
 import { useLocation } from 'react-router-dom';
@@ -87,6 +87,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
             return filters;
         },
     });
+
+    // Carlos - Handle single record, i.e. orders, array of orders
+    const temp = dataGridProps.rows as unknown;
+    const record = Object.create(temp as IYOrders) as IYOrders;
 
     const columns = React.useMemo<GridColumns<IYOrder>>(
     //const columns = React.useMemo<GridColumns<IOrder>>(
@@ -520,6 +524,7 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
                 >
                     <DataGrid
                         {...dataGridProps}
+                        rows={record.orders ?? []}
                         columns={columns}
                         filterModel={undefined}
                         autoHeight
