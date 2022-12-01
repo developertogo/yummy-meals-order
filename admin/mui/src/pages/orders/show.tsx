@@ -106,9 +106,7 @@ export const OrderShow: React.FC<IResourceComponentsProps> = () => {
                 field: "quantity",
                 headerName: t("orders.deliverables.fields.quantity"),
                 width: 150,
-                sortable: false,
-                // TODO: Display meal quantity
-                valueGetter: () => "1x",
+                type: "number",
             },
             // TODO: For future use
             /*

@@ -328,6 +328,10 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         defaultValue: getDefaultFilter("user.id", filters, "eq"),
     });
 
+    // const handleSortModelChange(){
+    //     console.log("sorting");
+    // }
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={12} lg={3}>
@@ -548,3 +552,12 @@ export const OrderList: React.FC<IResourceComponentsProps> = () => {
         </Grid>
     );
 };
+
+                        {/* Under development
+                        sortingMode="server"
+                        onSortModelChange={(model) => {
+                            console.log(model)
+                            //Infinitely logs model immediately
+                            //setSortModel(model)
+                          }}
+                        */}
