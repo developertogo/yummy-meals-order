@@ -24,9 +24,12 @@ The UI view displays:
 
 #### Users List
 
+![Users List](https://github.com/developertogo/yummy-meals-order/blob/master/assets/user-list.jpg)
 
 #### User Orders List
 
+![User Orders List](https://github.com/developertogo/yummy-meals-order/blob/master/assets/user-orders-list.jpg)
 
 #### User Order Details
 
+![User Order Details](https://github.com/developertogo/yummy-meals-order/blob/master/assets/user-order-details.jpg)
