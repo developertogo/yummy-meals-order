@@ -48,6 +48,8 @@ const App: React.FC = () => {
         getLocale: () => i18n.language,
     };
 
+    const serverURL = "http://localhost:4000/api/v1"
+
     return (
         <KBarProvider>
             <ColorModeContextProvider>
@@ -94,7 +96,7 @@ const App: React.FC = () => {
                             ],
                         }}
                         dataProvider={dataProvider(
-                            "http://localhost:4000/api/v1",
+                            serverURL
                             //"https://api.finefoods.refine.dev",
                         )}
                         authProvider={authProvider}

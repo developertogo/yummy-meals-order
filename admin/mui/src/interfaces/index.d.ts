@@ -37,7 +37,7 @@ export interface IUser {
     addresses: IAddress[];
 }
 
-// Yumi User
+// Yummy Meals User
 export interface IYUser {
     id: number;
     name: string;
@@ -104,12 +104,12 @@ export interface IOrder {
     amount: number;
 }
 
-// Yumi Orders
+// Yummy Orders
 export interface IYOrders {
     orders: IYOrder[];
 }
 
-// Yumi Order
+// Yummy Order
 export interface IYOrder {
     id: number;
     delivery_date: string;
@@ -117,7 +117,7 @@ export interface IYOrder {
     meals: IYMeal[];
 }
 
-// Yumi Meal
+// Yummy Meal
 export interface IYMeal {
     id: number;
     //quantity: number;

@@ -23,8 +23,7 @@ export const Title: React.FC<TitleProps> = ({ collapsed }) => {
                 {collapsed ? (
                     <BikeWhiteIcon sx={{ color: "common.white" }} />
                 ) : (
-                    //<img src="/images/fine-foods.svg" alt="Yumi" />
-                    <img src="/images/yumi-wh.png" alt="Yumi" />
+                    <img src="/images/yummy-meals-logo.png" alt="Yummy Meals" />
                 )}
             </Box>
         </Link>
